@@ -1,0 +1,40 @@
+{
+  "intro": "I’m Rakib Ahmed — a graphic designer focused on esports, gaming and digital visuals. I build bold, structured graphics for teams, tournaments and brands.",
+  "email": "rakibahmednov19@gmail.com",
+  "phone": "+880 1850 576594",
+  "behance": "https://www.behance.net/rakibahmed135",
+  "about": [
+    "I create graphics that help teams, events and digital brands communicate clearly and look distinctive. My focus is combining strong hierarchy, intentional typography and colour with the energy of gaming culture.",
+    "I’m comfortable working from a creative brief, adapting to established brand systems and refining details through feedback. I’m currently studying at Tejgaon College and building my professional design practice."
+  ],
+  "projects": [
+    {
+      "title": "Free Fire World Series BD",
+      "description": "Event visuals · Tournament campaign",
+      "category": "tournament",
+      "tag": "TOURNAMENT",
+      "headline": "FFWS\nBD 2026\nFALL"
+    },
+    {
+      "title": "CTG LAN 2025",
+      "description": "Event identity · Promotional graphics",
+      "category": "tournament",
+      "tag": "EVENT",
+      "headline": "CTG\nLAN\n2025"
+    },
+    {
+      "title": "Team Branding",
+      "description": "Logo direction · Team graphics",
+      "category": "branding",
+      "tag": "BRANDING",
+      "headline": "TEAM\nSTER ROR\nBD"
+    },
+    {
+      "title": "Social & Broadcast Graphics",
+      "description": "Player posters · Stream assets · Digital posts",
+      "category": "social",
+      "tag": "DIGITAL",
+      "headline": "SOCIAL\nCAMPAIGN\nSYSTEM"
+    }
+  ]
+}

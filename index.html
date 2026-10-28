@@ -27,6 +27,7 @@ footer{padding:25px 0 32px;color:#6f7e9e;font-size:10px;display:flex;justify-con
 @media(max-width:420px){.stats{grid-template-columns:1fr;gap:14px}.stat{border:0;padding:0}.process{grid-template-columns:1fr}.skills{grid-template-columns:1fr}.nav-cta{padding:9px 12px}}
 a:focus-visible,button:focus-visible{outline:2px solid #a8c4ff;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+.visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-1}.visual.has-img:after{display:none}.visual.has-img .micro,.visual.has-img .v-index,.visual.has-img .v-shape,.visual.has-img .v-title{display:none}
 </style>
 </head>
 <body>
@@ -52,7 +53,16 @@ a:focus-visible,button:focus-visible{outline:2px solid #a8c4ff;outline-offset:3p
 </main>
 <footer class="wrap"><span>© 2026 <strong>Rakib Ahmed</strong> · Graphic Designer</span><span>Made for bold ideas and better visuals.</span></footer>
 <script>
-const buttons=[...document.querySelectorAll('.filter')], cards=[...document.querySelectorAll('.project')];
-buttons.forEach(btn=>btn.addEventListener('click',()=>{buttons.forEach(b=>b.classList.toggle('active',b===btn));const f=btn.dataset.filter;cards.forEach(card=>card.hidden=!(f==='all'||card.dataset.category===f));}));
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],esc=s=>String(s==null?'':s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
+const G=['linear-gradient(130deg,#020617,#0d2a8f 55%,#a8c4ff)','linear-gradient(130deg,#03060f,#1b2f66 55%,#8fb0ff)','linear-gradient(130deg,#07091f,#2a2a9c 54%,#9aa6ff)','linear-gradient(130deg,#02101c,#0a4a9c 55%,#7fd0ff)'];
+function bind(){const b=$$('.filter'),c=$$('.project');b.forEach(x=>x.onclick=()=>{b.forEach(y=>y.classList.toggle('active',y===x));const f=x.dataset.filter;c.forEach(k=>k.hidden=!(f==='all'||k.dataset.category===f))})}
+fetch('content.json',{cache:'no-cache'}).then(r=>r.json()).then(c=>{
+if(c.intro)$('.intro').textContent=c.intro;
+if(c.email)$$('a[href^="mailto"]').forEach(a=>{a.href='mailto:'+c.email;if(a.closest('.contact-links'))a.textContent=c.email+' ↗'});
+if(c.phone){const a=$('a[href^="tel"]');a.href='tel:'+c.phone.replace(/[^+\d]/g,'');a.textContent=c.phone+' ↗'}
+if(c.behance)$$('a[href*="behance"]').forEach(a=>a.href=c.behance);
+if(c.about)$$('.about-copy>p').forEach((p,i)=>{if(c.about[i])p.textContent=c.about[i]});
+if(c.projects&&c.projects.length)$('.projects').innerHTML=c.projects.map((p,i)=>`<article class="project" data-category="${esc(p.category)}"><div class="visual${p.image?' has-img':''}" style="--bgv:${G[i%4]}">${p.image?`<img src="${esc(p.image)}" alt="${esc(p.title)}" loading="lazy">`:''}<span class="v-index">${String(i+1).padStart(2,'0')}</span><div class="v-shape"></div><div class="v-title">${esc(p.headline||p.title).replace(/\n/g,'<br>')}</div></div><div class="project-info"><div><h3>${esc(p.title)}</h3><p>${esc(p.description)}</p></div><span class="tag">${esc(p.tag)}</span></div></article>`).join('');
+bind()}).catch(bind);
 </script>
 </body></html>

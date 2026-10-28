@@ -1,0 +1,40 @@
+backend:
+  name: github
+  repo: rakibahmednov19-ai/Creatix
+media_folder: images
+public_folder: images
+collections:
+  - name: site
+    label: Portfolio
+    files:
+      - name: content
+        label: Site content
+        file: content.json
+        format: json
+        fields:
+          - {label: Intro text, name: intro, widget: text}
+          - {label: Email, name: email, widget: string}
+          - {label: Phone, name: phone, widget: string}
+          - {label: Behance link, name: behance, widget: string}
+          - label: About paragraphs
+            name: about
+            widget: list
+            field: {label: Paragraph, name: p, widget: text}
+          - label: Projects
+            name: projects
+            widget: list
+            label_singular: project
+            summary: "{{fields.title}}"
+            fields:
+              - {label: Title, name: title, widget: string}
+              - {label: Description, name: description, widget: string}
+              - label: Category
+                name: category
+                widget: select
+                options:
+                  - {label: Tournaments, value: tournament}
+                  - {label: Branding, value: branding}
+                  - {label: Social & Broadcast, value: social}
+              - {label: Tag, name: tag, widget: string}
+              - {label: Big text on card (no image), name: headline, widget: text, required: false}
+              - {label: Image, name: image, widget: image, required: false}
